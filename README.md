@@ -6,3 +6,6 @@ Share text, URLs, etc. between your devices or within groups with two clicks.
 2. Edit the `web/db_connection.php` script to point to your database.
 3. Copy files from the `web` folder to your hosting provider, e.g. to folder `/copypaste`.
 4. Open the URL base folder, e.g. `https://myhost.com/copypaste/`
+
+# TODO
+Add GUI functions to index.html 
