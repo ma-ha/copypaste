@@ -1,4 +1,18 @@
 <?php
+/*
+ RESTful Copy'n Paste Backend
+  
+ License: "The MIT License (MIT)" 
+ Copyright (c) 2015 ma-ha
+
+ Functionality:
+  - create pages (POST)
+  - add copy text to pages (POST with params page_id, copytext) 
+  - load page (GET with page_id)
+  - delete copytext (DELETE with data_id)
+  
+ You can protect your page with an additional "secret" parameter. */
+
 include_once 'db_connection.php';
 
 if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) { // read mode
