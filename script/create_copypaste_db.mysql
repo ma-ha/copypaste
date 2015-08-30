@@ -1,0 +1,21 @@
+CREATE DATABASE `copypaste`;
+CREATE user copypasteuser identified by 'secret';
+GRANT ALL ON copypasteuser.* to copypaste@'localhost';
+GRANT ALL PRIVILEGES ON copypaste.* to copypasteuser@'localhost' identified by 'secret'  WITH GRANT OPTION;	
+
+use copypaste;
+
+CREATE TABLE copypage (
+	page_id VARCHAR(255) NOT NULL,
+	secret VARCHAR(255) DEFAULT NULL,
+	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (page_id)
+);
+
+CREATE TABLE copydata (
+	data_id BIGINT NOT NULL AUTO_INCREMENT,
+	page_id VARCHAR(255) NOT NULL,
+	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	copytext TEXT NOT NULL, 
+	PRIMARY KEY (data_id, page_id)
+);
