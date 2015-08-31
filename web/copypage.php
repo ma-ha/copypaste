@@ -126,10 +126,10 @@ function getPageByID( $page_id ) {
 	 
 	// build SQL
 	$secret = null;
-	$sql = "SELECT * FROM copydata WHERE page_id = '$page_id' ";
+	$sql = "SELECT * FROM copydata WHERE page_id = '$page_id'";
 	if ( isset( $_GET["secret"] ) ) {
 		$secret = mysql_real_escape_string( $_GET["secret"] ); 
-		$sql .= " AND secret = '$secret' " ; 
+		$sql .= " AND secret = '$secret'" ; 
 	}
 	$sql .= " ORDER BY create_date";
 	sqllog( $sql );
@@ -144,10 +144,20 @@ function getPageByID( $page_id ) {
 		);
 	}
 	$copydata['copydata'] = $copytext;
+	
+	updateGetDate( $page_id );
+	
 	header('Content-type: application/json');
 	echo json_encode( $copydata , JSON_PRETTY_PRINT );
 }
 
+// ===========================================================================
+function updateGetDate( $page_id ) {
+	global $conn;
+	$sql = "UPDATE copypage SET get_date = NOW() WHERE page_id = '$page_id'";
+	sqllog( $sql );
+	$conn->exec( $sql );
+}
 
 // ===========================================================================
 function deleteCopyText() {

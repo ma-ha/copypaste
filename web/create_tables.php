@@ -6,10 +6,12 @@ $copypageTbl = "copypage";
 $copypageCol = 
 	"page_id VARCHAR(255) NOT NULL,
 	secret VARCHAR(255) DEFAULT NULL,
+	get_date TIMESTAMP  NULL,
 	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (page_id)";
-
-$createTable = $conn->exec( "CREATE TABLE IF NOT EXISTS $copypageTbl ( $copypageCol )" );
+$sql = "CREATE TABLE IF NOT EXISTS $copypageTbl ( $copypageCol )";
+error_log( $sql );
+$createTable = $conn->exec( $sql );
 if ( $createTable ) {
 	echo "Table $copypageTbl - Created!<br /><br />";
 } else { 
@@ -18,13 +20,14 @@ if ( $createTable ) {
 
 $copydataTbl = "copydata";
 $copydataCol = 
-	"data_id BIGINT NOT NULL AUTO_INCREMENT,
-	page_id VARCHAR(255) NOT NULL,
-	create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	copytext TEXT NOT NULL, 
-	PRIMARY KEY (data_id, page_id)";
-
-$createTable = $conn->exec( "CREATE TABLE IF NOT EXISTS $copydataTbl ( $copydataCol )" );
+	"data_id BIGINT NOT NULL AUTO_INCREMENT,".
+	"page_id VARCHAR(255) NOT NULL,".
+	"create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,".
+	"copytext TEXT NOT NULL,".
+	"PRIMARY KEY (data_id, page_id)";
+$sql = "CREATE TABLE IF NOT EXISTS $copydataTbl ( $copydataCol )";
+error_log( $sql );
+$createTable = $conn->exec( $sql );
 if ( $createTable ) {
 	echo "Table $copydataTbl - Created!<br /><br />";
 } else { 
