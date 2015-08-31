@@ -15,6 +15,8 @@
 
 include_once 'db_connection.php';
 
+$conn = dbconn();
+
 if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) { // read mode
 
 	$secret = null;
@@ -81,6 +83,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) { // read mode
 
 // ===========================================================================
 function createNewPage() {
+	global $conn;
 	mylog( 'createNewPage()' );
 	$page_id = genRandString( 5 );
 	$secret = null; 
@@ -93,19 +96,21 @@ function createNewPage() {
 		$sql .= ", secret = '$secret'";
 	}
 	
-	mysql_query( $sql );
+	$conn->exec( $sql );
 	getPageByID( $page_id );
 }
 
 // ===========================================================================
 function addCopyText() {
+	global $conn;
 	mylog( 'addCopyText()' );
 	$page_id  = mysql_real_escape_string( $_POST['page_id'] );
 	$copytext = mysql_real_escape_string( $_POST['copytext'] );
 	
 	$sql = "INSERT INTO copytext SET page_id = '$page_id', copytext = '$copytext'";
 	sqllog( $sql );
-	mysql_query( $sql );
+	
+	$conn->exec( $sql );
 
 	getPageByID( $page_id );
 }
@@ -113,10 +118,12 @@ function addCopyText() {
 
 // ===========================================================================
 function getPageByID( $page_id ) {
+	global $conn;
 	mylog( 'getPageByID()' );
 	// load copy paste data
 	$copydata =  array();
-	$copydata['page_id'] = $page_id; 
+	$copydata['page_id'] = $page_id;
+	 
 	// build SQL
 	$secret = null;
 	$sql = "SELECT * FROM copydata WHERE page_id = '$page_id' ";
@@ -126,17 +133,17 @@ function getPageByID( $page_id ) {
 	}
 	$sql .= " ORDER BY create_date";
 	sqllog( $sql );
-	
+
+	$copytext =  array();
 	// load data
-	$rslt = mysql_query( $sql );
-	while ( $rec = mysql_fetch_array( $rslt ) ) {
-		$copydata[] = array(
-			'data_id' => $rec[ 'data_id' ],
+	foreach ( $conn->query( $sql ) as $rec ) {
+		$copytext[] = array(
+			'data_id'     => $rec[ 'data_id' ],
 			'create_date' => $rec[ 'create_date' ],
-			'copytext' => $rec[ 'copytext' ]
+			'copytext'    => $rec[ 'copytext' ]
 		);
-		
 	}
+	$copydata['copydata'] = $copytext;
 	header('Content-type: application/json');
 	echo json_encode( $copydata , JSON_PRETTY_PRINT );
 }
@@ -144,13 +151,14 @@ function getPageByID( $page_id ) {
 
 // ===========================================================================
 function deleteCopyText() {
+	global $conn;
 	mylog( 'deleteCopyText()' );
 	$page_id = mysql_real_escape_string( $_POST['page_id'] );
 	$data_id = mysql_real_escape_string( $_POST['data_id'] );
 	
 	$sql = "DELETE FROM copydata WHERE data_id = $data_id";
 	sqllog( $sql );
-	mysql_query( $sql );
+	$conn->exec( $sql );
 
 	getPageByID( $page_id );
 }
@@ -158,22 +166,23 @@ function deleteCopyText() {
 
 // ===========================================================================
 function secretOK( $page_id, $secret ) {
+	global $conn;
 	mylog( 'secretOK()' );
 	$page_id = mysql_real_escape_string( $page_id );
+	
 	$sql = "SELECT * FROM copypage WHERE page_id = '$page_id' ";
 	sqllog( $sql );
-	$rslt = mysql_query( $sql );
-	if ( $rec = mysql_fetch_array( $rslt ) ) {
+	if ( $rec = $conn->query( $sql )->fetch() ) {
 		if ( $rec[ 'secret' ] != null ) {
 			if ( $rec[ 'secret' ] ==  $secret ) {
-				log( 'secretOK = true (1)' );
+				mylog( 'secretOK = true (1)' );
 				return true; 
 			} else {
-				log( 'secretOK = false' );
+				mylog( 'secretOK = false' );
 				return false;
 			}
 		} else {
-			log( 'secretOK = true (2)' );
+			mylog( 'secretOK = true (2)' );
 			return true;
 		}
 	}
@@ -206,7 +215,7 @@ function mylog( $txt ) {
 }
 
 function sqllog( $txt ) {
-	error_log( $txt );
+	error_log( " ".$txt );
 }
 
 ?>
