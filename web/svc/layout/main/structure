@@ -1,0 +1,86 @@
+{
+    "layout": {
+        "page_id": "92",
+        "page_name": "a44DmzD7uH",
+        "title": "Load Page",
+        "descr": "Load Page",
+        "page_width": "990",
+        "header": {
+            "id": "55",
+            "logoText": "Copy-N-Paste",
+            "modules": [
+                {
+                    "id": "i18n",
+                    "type": "i18n",
+                    "param": {
+                        "langList": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "id": "PongSession",
+                    "type": "pong-session"
+                }
+            ],
+            "linkList": []
+        },
+        "rows": [
+            {
+                "rowId": "162",
+                "height": "100px",
+                "resourceURL": "svc/dummy/",
+                "title": "Load Page",
+                "moduleConfig": {
+                    "description": "Load Copy-n-Paste page",
+                    "id": "cloudFormId",
+                    "fieldGroups": [
+                        {
+                            "columns": [
+                                {
+                                    "formFields": [
+                                        {
+                                            "id": "page_id",
+                                            "label": "Page",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "id": "layout",
+                                            "hidden": "true",
+                                            "defaultVal": "text"
+                                        },
+                                        {
+                                            "id": "secret",
+                                            "label": "Secret",
+                                            "type": "password"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "id": "ToEditor",
+                            "link": "Open Copy & Paste",
+                            "linkURL": "/mh/ws/copypaste/web/",
+                            "getParams": [
+                                "page_id",
+                                "layout"
+                            ]
+                        }
+                    ]
+                },
+                "type": "pong-form",
+                "type_id": "7",
+                "decor": "decor"
+            }
+        ],
+        "footer": {
+            "id": "56",
+            "copyrightText": "... by PoNG",
+            "modules": [],
+            "linkList": []
+        }
+    }
+}
