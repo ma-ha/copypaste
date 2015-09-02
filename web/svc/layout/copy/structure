@@ -1,0 +1,112 @@
+{
+    "layout": {
+        "page_id": "90",
+        "page_name": "IBNAc5FGD",
+        "title": "Copy-n-Paste",
+        "descr": "Copy-n-Paste",
+        "page_width": "990",
+        "header": {
+            "id": "55",
+            "logoText": "Copy-N-Paste",
+            "modules": [
+                {
+                    "id": "i18n",
+                    "type": "i18n",
+                    "param": {
+                        "langList": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "id": "PongSession",
+                    "type": "pong-session"
+                }
+            ],
+            "linkList": []
+        },
+        "rows": [
+            {
+                "rowId": "158",
+                "height": "80px",
+                "resourceURL": "svc/dummy/",
+                "title": "Copy-n-Paste",
+                "moduleConfig": {
+                    "description": "Load Copy-n-Paste page",
+                    "id": "cloudFormId",
+                    "fieldGroups": [
+                        {
+                            "columns": [
+                                {
+                                    "formFields": [
+                                        {
+                                            "id": "copytext",
+                                            "label": "Paste text",
+                                            "type": "text"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "id": "sendText",
+                            "actionName": "Send Text",
+                            "method": "POST",
+                            "actionURL": "svc/customer",
+                            "update": [
+                                {
+                                    "resId": "159"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "type": "pong-form",
+                "type_id": "7",
+                "decor": "decor"
+            },
+            {
+                "rowId": "159",
+                "height": "500px",
+                "resourceURL": "Copy-n-Paste",
+                "moduleConfig": {
+                    "dataURL": "tbldata",
+                    "rowId": "data_id",
+                    "cols": [
+                        {
+                            "id": "copytext",
+                            "label": "Text",
+                            "cellType": "text",
+                            "width": "70%"
+                        },
+                        {
+                            "id": "cre_date",
+                            "label": "Date",
+                            "cellType": "text",
+                            "width": "20%"
+                        },
+                        {
+                            "id": "del",
+                            "label": "Delete",
+                            "cellType": "button",
+                            "method": "DELETE",
+                            "width": "10%"
+                        }
+                    ],
+                    "maxRows": "20"
+                },
+                "type": "pong-table",
+                "type_id": "5",
+                "decor": "decor"
+            }
+        ],
+        "footer": {
+            "id": "56",
+            "copyrightText": "... by PoNG",
+            "modules": [],
+            "linkList": []
+        }
+    }
+}
