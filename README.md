@@ -19,7 +19,8 @@ To load an exiting one, just enter the (5 digit) key and click the link.
 On the copy-paste page you can past new text using the form or copy text you pasted already.
 
 # TODO
-Add GUI functions to index.html 
+- Add copy button
+- implement secret
 
 # License
 MIT License (MIT), Copyright (c) 2015 ma-ha

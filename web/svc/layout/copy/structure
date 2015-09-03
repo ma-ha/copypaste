@@ -4,7 +4,7 @@
         "page_name":"IBNAc5FGD",
         "title":"Copy-n-Paste",
         "descr":"Copy-n-Paste",
-        "page_width":"990",
+        "page_width":"890",
         "header": {
             "logoText":"Copy-N-Paste",
             "linkList": [
@@ -14,9 +14,9 @@
         "rows": [
             {
                 "rowId":"PasteForm",
-                "height":"180px",
+                "height":"70px",
                 "resourceURL":"copypage.php",
-                "title":"Copy-n-Paste",
+                "title":"Paste:",
                 "moduleConfig": {
                     "description":"Load Copy-n-Paste page",
                     "id":"cloudFormId",
@@ -27,7 +27,7 @@
                                     "formFields": [
                                         {
                                             "id":"copytext",
-                                            "label":"Paste text",
+                                            "label":"Paste text:",
                                             "type":"text"
                                         },
                                         {
@@ -59,6 +59,7 @@
             {
                 "rowId":"CopyTbl",
                 "height":"500px",
+                "title":"Copy:",
                 "resourceURL":"copypage.php",
                 "moduleConfig": {
                     "dataURL":"copypage.php",
@@ -67,7 +68,7 @@
                     "cols": [
                         {
                             "id":"copytext",
-                            "label":"Text",
+                            "label":"Copy Text",
                             "cellType":"text",
                             "width":"70%"
                         },
@@ -86,7 +87,7 @@
                             "width":"10%"
                         }
                     ],
-                    "maxRows":"20"
+                    "maxRows":"13"
                 },
                 "type":"pong-table",
                 "decor":"decor"
