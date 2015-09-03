@@ -28,8 +28,8 @@
         "rows": [
             {
                 "rowId": "158",
-                "height": "80px",
-                "resourceURL": "svc/dummy/",
+                "height": "180px",
+                "resourceURL": "copypage.php",
                 "title": "Copy-n-Paste",
                 "moduleConfig": {
                     "description": "Load Copy-n-Paste page",
@@ -43,6 +43,11 @@
                                             "id": "copytext",
                                             "label": "Paste text",
                                             "type": "text"
+                                        },
+                                        {
+                                            "id": "page_id",
+                                            "type": "text",
+                                            "defaultVal": "-------"
                                         }
                                     ]
                                 }
@@ -50,11 +55,12 @@
                         }
                     ],
                     "actions": [
+                    	{ "id":"init", "onInit":"GET" },
                         {
                             "id": "sendText",
                             "actionName": "Send Text",
                             "method": "POST",
-                            "actionURL": "svc/customer",
+                            "actionURL": "copypage.php",
                             "update": [
                                 {
                                     "resId": "159"
@@ -70,9 +76,9 @@
             {
                 "rowId": "159",
                 "height": "500px",
-                "resourceURL": "Copy-n-Paste",
+                "resourceURL": "copypage.php",
                 "moduleConfig": {
-                    "dataURL": "tbldata",
+                    "dataURL": "copypage.php",
                     "rowId": "data_id",
                     "cols": [
                         {
@@ -80,6 +86,10 @@
                             "label": "Text",
                             "cellType": "text",
                             "width": "70%"
+                        },
+                        {
+                            "id": "page_id",
+                            "hidden": "true"
                         },
                         {
                             "id": "cre_date",
