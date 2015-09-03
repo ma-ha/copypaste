@@ -1,39 +1,39 @@
 {
     "layout": {
-        "page_id": "90",
-        "page_name": "IBNAc5FGD",
-        "title": "Copy-n-Paste",
-        "descr": "Copy-n-Paste",
-        "page_width": "990",
+        "page_id":"CopyPaste",
+        "page_name":"IBNAc5FGD",
+        "title":"Copy-n-Paste",
+        "descr":"Copy-n-Paste",
+        "page_width":"990",
         "header": {
-            "logoText": "Copy-N-Paste",
+            "logoText":"Copy-N-Paste",
             "linkList": [
-            	{ "text":"About", "url": "https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
+            	{ "text":"About", "url":"https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
              ]
         },
         "rows": [
             {
-                "rowId": "158",
-                "height": "180px",
-                "resourceURL": "copypage.php",
-                "title": "Copy-n-Paste",
+                "rowId":"PasteForm",
+                "height":"180px",
+                "resourceURL":"copypage.php",
+                "title":"Copy-n-Paste",
                 "moduleConfig": {
-                    "description": "Load Copy-n-Paste page",
-                    "id": "cloudFormId",
+                    "description":"Load Copy-n-Paste page",
+                    "id":"cloudFormId",
                     "fieldGroups": [
                         {
                             "columns": [
                                 {
                                     "formFields": [
                                         {
-                                            "id": "copytext",
-                                            "label": "Paste text",
-                                            "type": "text"
+                                            "id":"copytext",
+                                            "label":"Paste text",
+                                            "type":"text"
                                         },
                                         {
-                                            "id": "page_id",
-                                            "type": "text",
-                                            "defaultVal": "-------"
+                                            "id":"page_id",
+                                            "type":"text",
+                                            "hidden":"true"
                                         }
                                     ]
                                 }
@@ -43,63 +43,57 @@
                     "actions": [
                     	{ "id":"init", "onInit":"GET" },
                         {
-                            "id": "sendText",
-                            "actionName": "Send Text",
-                            "method": "POST",
-                            "actionURL": "copypage.php",
+                            "id":"sendText",
+                            "actionName":"Send Text",
+                            "method":"POST",
+                            "actionURL":"copypage.php",
                             "update": [
-                                {
-                                    "resId": "159"
-                                }
+                                { "resId":"CopyTbl" }
                             ]
                         }
                     ]
                 },
-                "type": "pong-form",
-                "type_id": "7",
-                "decor": "decor"
+                "type":"pong-form",
+                "decor":"decor"
             },
             {
-                "rowId": "159",
-                "height": "500px",
-                "resourceURL": "copypage.php",
+                "rowId":"CopyTbl",
+                "height":"500px",
+                "resourceURL":"copypage.php",
                 "moduleConfig": {
-                    "dataURL": "copypage.php",
-                    "rowId": "data_id",
+                    "dataURL":"copypage.php",
+                    "dataDocSubPath":"copydata",
+                    "rowId": ["page_id","data_id"],
                     "cols": [
                         {
-                            "id": "copytext",
-                            "label": "Text",
-                            "cellType": "text",
-                            "width": "70%"
+                            "id":"copytext",
+                            "label":"Text",
+                            "cellType":"text",
+                            "width":"70%"
                         },
                         {
-                            "id": "page_id",
-                            "hidden": "true"
+                            "id":"create_date",
+                            "label":"Date",
+                            "cellType":"text",
+                            "width":"20%"
                         },
                         {
-                            "id": "cre_date",
-                            "label": "Date",
-                            "cellType": "text",
-                            "width": "20%"
-                        },
-                        {
-                            "id": "del",
-                            "label": "Delete",
-                            "cellType": "button",
-                            "method": "DELETE",
-                            "width": "10%"
+                            "id":"del",
+                            "label":"Delete",
+                            "cellType":"button",
+                            "method":"DELETE",
+                            "update": [ { "resId":"CopyTbl" } ],
+                            "width":"10%"
                         }
                     ],
-                    "maxRows": "20"
+                    "maxRows":"20"
                 },
-                "type": "pong-table",
-                "type_id": "5",
-                "decor": "decor"
+                "type":"pong-table",
+                "decor":"decor"
             }
         ],
         "footer": {
-            "copyrightText": "<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
+            "copyrightText":"<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
             "modules": [],
             "linkList": []
         }

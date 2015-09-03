@@ -1,44 +1,44 @@
 {
     "layout": {
-        "page_id": "92",
-        "page_name": "a44DmzD7uH",
-        "title": "Load Page",
-        "descr": "Load Page",
-        "page_width": "990",
+        "page_id":"92",
+        "page_name":"a44DmzD7uH",
+        "title":"Load Page",
+        "descr":"Load Page",
+        "page_width":"990",
         "header": {
-            "logoText": "Copy-N-Paste",
+            "logoText":"Copy-N-Paste",
             "linkList": [
-            	{ "text":"About", "url": "https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
+            	{ "text":"About", "url":"https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
              ]
         },
         "rows": [
             {
-                "rowId": "162",
-                "height": "100px",
-                "resourceURL": "svc/dummy/",
-                "title": "Load Page",
+                "rowId":"162",
+                "height":"100px",
+                "resourceURL":"svc/dummy/",
+                "title":"Load Page",
                 "moduleConfig": {
-                    "description": "Load Copy-n-Paste page",
-                    "id": "cloudFormId",
+                    "description":"Load Copy-n-Paste page",
+                    "id":"cloudFormId",
                     "fieldGroups": [
                         {
                             "columns": [
                                 {
                                     "formFields": [
                                         {
-                                            "id": "page_id",
-                                            "label": "Page",
-                                            "type": "text"
+                                            "id":"page_id",
+                                            "label":"Page",
+                                            "type":"text"
                                         },
                                         {
-                                            "id": "layout",
-                                            "hidden": "true",
-                                            "defaultVal": "copy"
+                                            "id":"layout",
+                                            "hidden":"true",
+                                            "defaultVal":"copy"
                                         },
                                         {
-                                            "id": "secret",
-                                            "label": "Secret",
-                                            "type": "password"
+                                            "id":"secret",
+                                            "label":"Secret",
+                                            "type":"password"
                                         }
                                     ]
                                 }
@@ -47,9 +47,9 @@
                     ],
                     "actions": [
                         {
-                            "id": "ToEditor",
-                            "link": "Open Copy & Paste",
-                            "linkURL": "index.html",
+                            "id":"ToEditor",
+                            "link":"Open Copy & Paste",
+                            "linkURL":"index.html",
                             "getParams": [
                                 "page_id",
                                 "layout"
@@ -57,13 +57,13 @@
                         }
                     ]
                 },
-                "type": "pong-form",
-                "type_id": "7",
-                "decor": "decor"
+                "type":"pong-form",
+                "type_id":"7",
+                "decor":"decor"
             }
         ],
         "footer": {
-            "copyrightText": "<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
+            "copyrightText":"<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
             "modules": [],
             "linkList": []
         }

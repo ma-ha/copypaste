@@ -107,7 +107,7 @@ function addCopyText() {
 	$page_id  = mysql_real_escape_string( $_POST['page_id'] );
 	$copytext = mysql_real_escape_string( $_POST['copytext'] );
 	
-	$sql = "INSERT INTO copytext SET page_id = '$page_id', copytext = '$copytext'";
+	$sql = "INSERT INTO copydata SET page_id = '$page_id', copytext = '$copytext'";
 	sqllog( $sql );
 	
 	$conn->exec( $sql );
@@ -138,6 +138,7 @@ function getPageByID( $page_id ) {
 	// load data
 	foreach ( $conn->query( $sql ) as $rec ) {
 		$copytext[] = array(
+			'page_id'     => $page_id,
 			'data_id'     => $rec[ 'data_id' ],
 			'create_date' => $rec[ 'create_date' ],
 			'copytext'    => $rec[ 'copytext' ]
@@ -163,8 +164,8 @@ function updateGetDate( $page_id ) {
 function deleteCopyText() {
 	global $conn;
 	mylog( 'deleteCopyText()' );
-	$page_id = mysql_real_escape_string( $_POST['page_id'] );
-	$data_id = mysql_real_escape_string( $_POST['data_id'] );
+	$page_id = mysql_real_escape_string( $_GET['page_id'] );
+	$data_id = mysql_real_escape_string( $_GET['data_id'] );
 	
 	$sql = "DELETE FROM copydata WHERE data_id = $data_id";
 	sqllog( $sql );
@@ -196,6 +197,7 @@ function secretOK( $page_id, $secret ) {
 			return true;
 		}
 	}
+	return false;
 }
 
 // ===========================================================================
