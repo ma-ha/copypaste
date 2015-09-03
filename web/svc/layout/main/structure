@@ -47,7 +47,7 @@
                                         {
                                             "id": "layout",
                                             "hidden": "true",
-                                            "defaultVal": "text"
+                                            "defaultVal": "copy"
                                         },
                                         {
                                             "id": "secret",
@@ -63,7 +63,7 @@
                         {
                             "id": "ToEditor",
                             "link": "Open Copy & Paste",
-                            "linkURL": "/mh/ws/copypaste/web/",
+                            "linkURL": "index.html",
                             "getParams": [
                                 "page_id",
                                 "layout"
