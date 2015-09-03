@@ -6,24 +6,10 @@
         "descr": "Load Page",
         "page_width": "990",
         "header": {
-            "id": "55",
             "logoText": "Copy-N-Paste",
-            "modules": [
-                {
-                    "id": "i18n",
-                    "type": "i18n",
-                    "param": {
-                        "langList": [
-                            ""
-                        ]
-                    }
-                },
-                {
-                    "id": "PongSession",
-                    "type": "pong-session"
-                }
-            ],
-            "linkList": []
+            "linkList": [
+            	{ "text":"About", "url": "https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
+             ]
         },
         "rows": [
             {
@@ -77,8 +63,7 @@
             }
         ],
         "footer": {
-            "id": "56",
-            "copyrightText": "... by PoNG",
+            "copyrightText": "<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
             "modules": [],
             "linkList": []
         }
