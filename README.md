@@ -3,6 +3,9 @@ Share text, URLs, etc. between your devices or within groups with two clicks.
 
 I coded this, cause I always need to share URLs, test-input, IDs etc. between my Linux development PC and the iPad or Android Phone -- without chatting and skyping with myself. 
 
+# Try it online
+It's [installed here](http://mh-svr.de/copy/), you're free to use it.
+
 # Set Up
 1. Clone the GIT source to local files (git clone <GIThub-URL> 
 2. Edit the `web/db_connection.php` script to point to your database.
@@ -19,7 +22,7 @@ To load an exiting one, just enter the (5 digit) key and click the link.
 On the copy-paste page you can past new text using the form or copy text you pasted already.
 
 # TODO
-- Add copy button
+- implement copy button
 - implement secret
 
 # License
