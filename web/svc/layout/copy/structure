@@ -2,60 +2,97 @@
     "layout": {
         "page_id":"CopyPaste",
         "page_name":"IBNAc5FGD",
-        "title":"Copy-n-Paste",
-        "descr":"Copy-n-Paste",
+        "title":"Paste-n-Copy",
+        "descr":"Paste-n-Copy",
         "page_width":"890",
         "header": {
-            "logoText":"Copy-N-Paste",
+            "logoText":"Paste-n-Copy",
             "linkList": [
             	{ "text":"About", "url":"https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
              ]
         },
         "rows": [
             {
-                "rowId":"PasteForm",
-                "height":"70px",
-                "resourceURL":"copypage.php",
-                "title":"Paste:",
-                "moduleConfig": {
-                    "description":"Load Copy-n-Paste page",
-                    "id":"cloudFormId",
-                    "fieldGroups": [
-                        {
-                            "columns": [
-                                {
-                                    "formFields": [
-                                        {
-                                            "id":"copytext",
-                                            "label":"Paste text:",
-                                            "type":"text"
-                                        },
-                                        {
-                                            "id":"page_id",
-                                            "type":"text",
-                                            "hidden":"true"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    "actions": [
-                    	{ "id":"init", "onInit":"GET" },
-                        {
-                            "id":"sendText",
-                            "actionName":"Send Text",
-                            "method":"POST",
-                            "actionURL":"copypage.php",
-                            "update": [
-                                { "resId":"CopyTbl" }
-                            ]
-                        }
-                    ]
-                },
-                "type":"pong-form",
-                "decor":"decor"
-            },
+                "rowId":"Row1",
+                "height":"100px",
+                "cols": [
+                    {
+                        "columnId":"PasteForm",
+                        "width":"760px",
+		                "resourceURL":"copypage.php",
+		                "title":"Paste:",
+		                "moduleConfig": {
+		                    "description":"Load Copy-n-Paste page",
+		                    "id":"cloudFormId",
+		                    "fieldGroups": [
+		                        {
+		                            "columns": [
+		                                {
+		                                    "formFields": [
+		                                        {
+		                                            "id":"page_id",
+		                                            "hidden":"true",
+		                                            "type":"text"
+		                                        },
+		                                        {
+		                                            "id":"copytext",
+		                                            "label":"Text:",
+		                                            "type":"text"
+		                                        }
+		                                    ]
+		                                }
+		                            ]
+		                        }
+		                    ],
+		                    "actions": [
+		                    	{ "id":"init", "onInit":"GET" },
+		                        {
+		                            "id":"sendText",
+		                            "actionName":"Send Text",
+		                            "method":"POST",
+		                            "actionURL":"copypage.php",
+		                            "update": [
+		                                { "resId":"CopyTbl" }
+		                            ]
+		                        }
+		                    ]
+		                },
+		                "type":"pong-form",
+		                "decor":"decor"
+                    },
+                    {
+                        "columnId":"PageNameForm",
+                        "width":"230px",
+		                "resourceURL":"copypage.php",
+		                "title":"Page:",
+		                "moduleConfig": {
+		                    "description":"Load Copy-n-Paste page",
+		                    "id":"cloudFormId",
+		                    "fieldGroups": [
+		                        {
+		                            "columns": [
+		                                {
+		                                    "formFields": [
+		                                        {
+		                                            "id":"page_id",
+		                                            "label":"Page-ID:",
+		                                            "type":"text",
+		                                            "readonly":"true"
+		                                        }
+		                                    ]
+		                                }
+		                            ]
+		                        }
+		                    ],
+		                    "actions": [
+		                    	{ "id":"init", "onInit":"GET" }
+		                    ]
+		                },
+		                "type":"pong-form",
+		                "decor":"decor"
+                    }
+                ]
+            },        
             {
                 "rowId":"CopyTbl",
                 "height":"500px",
@@ -67,24 +104,33 @@
                     "rowId": ["page_id","data_id"],
                     "cols": [
                         {
+                            "id":"BtCopy",
+                            "label":"Copy",
+                            "icon":"ui-icon-clipboard",
+                            "cellType":"button",
+                            "method":"JS",
+                            "js":"alert('huhu');",
+                            "width":"10%"
+                        },
+	                    {
+                            "id":"BtDel",
+                            "label":"Delete",
+                            "cellType":"button",
+                            "method":"DELETE",
+                            "update": [ { "resId":"CopyTbl" } ],
+                            "width":"10%"
+                        },
+                        {
                             "id":"copytext",
                             "label":"Copy Text",
                             "cellType":"text",
-                            "width":"70%"
+                            "width":"60%"
                         },
                         {
                             "id":"create_date",
                             "label":"Date",
                             "cellType":"text",
                             "width":"20%"
-                        },
-                        {
-                            "id":"del",
-                            "label":"Delete",
-                            "cellType":"button",
-                            "method":"DELETE",
-                            "update": [ { "resId":"CopyTbl" } ],
-                            "width":"10%"
                         }
                     ],
                     "maxRows":"13"

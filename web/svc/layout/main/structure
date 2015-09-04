@@ -1,6 +1,6 @@
 {
     "layout": {
-        "page_id":"92",
+        "page_id":"CopyPasteHome",
         "page_name":"a44DmzD7uH",
         "title":"Load Page",
         "descr":"Load Page",
@@ -12,6 +12,40 @@
              ]
         },
         "rows": [
+            {
+                "rowId":"CfreatePage",
+                "height":"70px",
+                "resourceURL":"svc/dummy/",
+                "title":"Load Page",
+                "moduleConfig": {
+                    "description":"Load Copy-n-Paste page",
+                    "id":"creFrmID",
+                    "fieldGroups": [
+                        {
+                            "columns": [
+                                {
+                                    "formFields": [
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "actions": [
+                        {
+                            "id":"CrePage",
+                            "actionName":"Create New Copy-Paste Page",
+                            "method":"POST",
+                            "actionURL":"copypage.php",
+                            "setData": [
+                                { "resId":"162" }
+                            ]
+                        }
+                    ]
+                },
+                "type":"pong-form",
+                "type_id":"7",
+                "decor":"decor"
+            },
             {
                 "rowId":"162",
                 "height":"100px",
