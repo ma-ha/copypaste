@@ -14,7 +14,7 @@
         "rows": [
             {
                 "rowId":"Row1",
-                "height":"100px",
+                "height":"90px",
                 "cols": [
                     {
                         "columnId":"PasteForm",
