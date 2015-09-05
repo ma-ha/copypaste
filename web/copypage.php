@@ -21,14 +21,14 @@ if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) { // read mode
 
 	$secret = null;
 	if ( isset( $_GET['secret'] ) ) {
-		$secret = mysql_real_escape_string( $_GET['secret'] );
+		$secret = $conn->quote( $_GET['secret'] );
 	}
 	
 	if ( isset( $_GET["page_id"] ) ) {
 		if ( secretOK( $_GET["page_id"], $secret ) ) {
 			
-			$page_id = mysql_real_escape_string( $_GET["page_id"] );
-			getPageByID( $page_id );
+			//$page_id = $conn->quote( $_GET["page_id"] );
+			getPageByID( $_GET["page_id"]  );
 		
 		} else {
 			httpSendError( 401, 'Secret reuired for this page!' );
@@ -63,7 +63,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) { // read mode
 
 	$secret = null;
 	if ( isset( $_POST['secret'] ) ) {
-		$secret = mysql_real_escape_string( $_POST['secret'] );
+		$secret = $conn->quote( $_POST['secret'] );
 	}
 	
 	if ( isset( $_GET["page_id"] ) && isset( $_GET["data_id"] ) ) {
@@ -85,34 +85,35 @@ if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) { // read mode
 function createNewPage() {
 	global $conn;
 	mylog( 'createNewPage()' );
-	$page_id = genRandString( 5 );
+	$page_id_raw = genRandString( 5 ); 
+	$page_id =  $conn->quote( $page_id_raw );
 	$secret = null; 
 	
-	$sql = "INSERT INTO copypage SET page_id = '$page_id'";  
+	$sql = "INSERT INTO copypage SET page_id = $page_id";  
 	sqllog( $sql );
 	
 	if ( isset( $_POST["secret"] ) ) {
-		$secret = mysql_real_escape_string( $_GET["secret"] );
-		$sql .= ", secret = '$secret'";
+		$secret = $conn->quote( $_GET["secret"] );
+		$sql .= ", secret = $secret";
 	}
 	
 	$conn->exec( $sql );
-	getPageByID( $page_id );
+	getPageByID( $page_id_raw );
 }
 
 // ===========================================================================
 function addCopyText() {
 	global $conn;
 	mylog( 'addCopyText()' );
-	$page_id  = mysql_real_escape_string( $_POST['page_id'] );
-	$copytext = mysql_real_escape_string( $_POST['copytext'] );
+	$page_id  = $conn->quote( $_POST['page_id'] );
+	$copytext = $conn->quote( $_POST['copytext'] );
 	
-	$sql = "INSERT INTO copydata SET page_id = '$page_id', copytext = '$copytext'";
+	$sql = "INSERT INTO copydata SET page_id = $page_id, copytext = $copytext";
 	sqllog( $sql );
 	
 	$conn->exec( $sql );
 
-	getPageByID( $page_id );
+	getPageByID( $_POST['page_id'] );
 }
 
 
@@ -123,13 +124,13 @@ function getPageByID( $page_id ) {
 	// load copy paste data
 	$copydata =  array();
 	$copydata['page_id'] = $page_id;
-	 
+	$page_id_q = $conn->quote( $page_id);
 	// build SQL
 	$secret = null;
-	$sql = "SELECT * FROM copydata WHERE page_id = '$page_id'";
+	$sql = "SELECT * FROM copydata WHERE page_id = $page_id_q";
 	if ( isset( $_GET["secret"] ) ) {
-		$secret = mysql_real_escape_string( $_GET["secret"] ); 
-		$sql .= " AND secret = '$secret'" ; 
+		$secret = $conn->quote( $_GET["secret"] ); 
+		$sql .= " AND secret = $secret" ; 
 	}
 	$sql .= " ORDER BY create_date";
 	sqllog( $sql );
@@ -146,7 +147,7 @@ function getPageByID( $page_id ) {
 	}
 	$copydata['copydata'] = $copytext;
 	
-	updateGetDate( $page_id );
+	updateGetDate( $page_id_q );
 	
 	header('Content-type: application/json');
 	echo json_encode( $copydata , JSON_PRETTY_PRINT );
@@ -155,7 +156,7 @@ function getPageByID( $page_id ) {
 // ===========================================================================
 function updateGetDate( $page_id ) {
 	global $conn;
-	$sql = "UPDATE copypage SET get_date = NOW() WHERE page_id = '$page_id'";
+	$sql = "UPDATE copypage SET get_date = NOW() WHERE page_id = $page_id";
 	sqllog( $sql );
 	$conn->exec( $sql );
 }
@@ -164,14 +165,14 @@ function updateGetDate( $page_id ) {
 function deleteCopyText() {
 	global $conn;
 	mylog( 'deleteCopyText()' );
-	$page_id = mysql_real_escape_string( $_GET['page_id'] );
-	$data_id = mysql_real_escape_string( $_GET['data_id'] );
+	$page_id = $conn->quote( $_GET['page_id'] );
+	$data_id = $conn->quote( $_GET['data_id'] );
 	
 	$sql = "DELETE FROM copydata WHERE data_id = $data_id";
 	sqllog( $sql );
 	$conn->exec( $sql );
 
-	getPageByID( $page_id );
+	getPageByID( $_POST['page_id'] );
 }
 
 
@@ -179,9 +180,9 @@ function deleteCopyText() {
 function secretOK( $page_id, $secret ) {
 	global $conn;
 	mylog( 'secretOK()' );
-	$page_id = mysql_real_escape_string( $page_id );
+	$page_id = $conn->quote( $page_id );
 	
-	$sql = "SELECT * FROM copypage WHERE page_id = '$page_id' ";
+	$sql = "SELECT * FROM copypage WHERE page_id = $page_id ";
 	sqllog( $sql );
 	if ( $rec = $conn->query( $sql )->fetch() ) {
 		if ( $rec[ 'secret' ] != null ) {
