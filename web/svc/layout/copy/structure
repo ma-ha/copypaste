@@ -109,7 +109,7 @@
                             "icon":"ui-icon-clipboard",
                             "cellType":"button",
                             "method":"JS",
-                            "js":"if ( ! document.queryCommandSupported('copy') ) { alert( 'Copy to clipboard not supported by your browser, please do it manually!' ); } else { var copyTextarea = $( '#'+theRowId+' > .CopyTblContentC2').text(); try { var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; alert('Copying text command was ' + msg); } catch (err) { alert('Oops, unable to copy! Please copy the text manually'); }}",
+                            "js":"if ( ! document.queryCommandSupported('copy') ) { alert( 'Copy to clipboard not supported by your browser, please do it manually!' ); } else { var copyTextarea = $( '#'+theRowId+' > .CopyTblContentC2').text(); try { var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; alert('Copying text command was ' + msg); } catch (err) { alert('Oops, unable to copy! Please copy the text manually!'); }}",
                             "width":"10%"
                         },
 	                    {
