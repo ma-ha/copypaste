@@ -1,148 +1,187 @@
 {
-    "layout": {
-        "page_id":"CopyPaste",
-        "page_name":"IBNAc5FGD",
-        "title":"Paste-n-Copy",
-        "descr":"Paste-n-Copy",
-        "page_width":"890",
-        "header": {
-            "logoText":"Paste-n-Copy",
-            "linkList": [
-            	{ "text":"About", "url":"https://github.com/ma-ha/copypaste/blob/master/README.md", "target":"_blank" }
-             ]
-        },
-        "rows": [
-            {
-                "rowId":"Row1",
-                "height":"90px",
-                "cols": [
-                    {
-                        "columnId":"PasteForm",
-                        "width":"760px",
-		                "resourceURL":"copypage.php",
-		                "title":"Paste:",
-		                "moduleConfig": {
-		                    "description":"Load Copy-n-Paste page",
-		                    "id":"cloudFormId",
-		                    "fieldGroups": [
-		                        {
-		                            "columns": [
-		                                {
-		                                    "formFields": [
-		                                        {
-		                                            "id":"page_id",
-		                                            "hidden":"true",
-		                                            "type":"text"
-		                                        },
-		                                        {
-		                                            "id":"copytext",
-		                                            "label":"Text:",
-		                                            "type":"text"
-		                                        }
-		                                    ]
-		                                }
-		                            ]
-		                        }
-		                    ],
-		                    "actions": [
-		                    	{ "id":"init", "onInit":"GET" },
-		                        {
-		                            "id":"sendText",
-		                            "actionName":"Send Text",
-		                            "method":"POST",
-		                            "actionURL":"copypage.php",
-		                            "update": [
-		                                { "resId":"CopyTbl" }
-		                            ]
-		                        }
-		                    ]
-		                },
-		                "type":"pong-form",
-		                "decor":"decor"
-                    },
-                    {
-                        "columnId":"PageNameForm",
-                        "width":"230px",
-		                "resourceURL":"copypage.php",
-		                "title":"Page:",
-		                "moduleConfig": {
-		                    "description":"Load Copy-n-Paste page",
-		                    "id":"cloudFormId",
-		                    "fieldGroups": [
-		                        {
-		                            "columns": [
-		                                {
-		                                    "formFields": [
-		                                        {
-		                                            "id":"page_id",
-		                                            "label":"Page-ID:",
-		                                            "type":"text",
-		                                            "readonly":"true"
-		                                        }
-		                                    ]
-		                                }
-		                            ]
-		                        }
-		                    ],
-		                    "actions": [
-		                    	{ "id":"init", "onInit":"GET" }
-		                    ]
-		                },
-		                "type":"pong-form",
-		                "decor":"decor"
-                    }
-                ]
-            },        
-            {
-                "rowId":"CopyTbl",
-                "height":"500px",
-                "title":"Copy:",
-                "resourceURL":"copypage.php",
-                "moduleConfig": {
-                    "dataURL":"copypage.php",
-                    "dataDocSubPath":"copydata",
-                    "rowId": ["page_id","data_id"],
-                    "cols": [
-                        {
-                            "id":"BtCopy",
-                            "label":"Copy",
-                            "icon":"ui-icon-clipboard",
-                            "cellType":"button",
-                            "method":"JS",
-                            "js":"if ( ! document.queryCommandSupported('copy') ) { alert( 'Copy to clipboard not supported by your browser, please do it manually!' ); } else { var copyTextarea = $( '#'+theRowId+' > .CopyTblContentC2').text(); try { var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; alert('Copying text command was ' + msg); } catch (err) { alert('Oops, unable to copy! Please copy the text manually!'); }}",
-                            "width":"10%"
-                        },
-	                    {
-                            "id":"BtDel",
-                            "label":"Delete",
-                            "cellType":"button",
-                            "method":"DELETE",
-                            "update": [ { "resId":"CopyTbl" } ],
-                            "width":"10%"
-                        },
-                        {
-                            "id":"copytext",
-                            "label":"Copy Text",
-                            "cellType":"text",
-                            "width":"60%"
-                        },
-                        {
-                            "id":"create_date",
-                            "label":"Date",
-                            "cellType":"text",
-                            "width":"20%"
-                        }
-                    ],
-                    "maxRows":"13"
-                },
-                "type":"pong-table",
-                "decor":"decor"
-            }
-        ],
-        "footer": {
-            "copyrightText":"<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
-            "modules": [],
-            "linkList": []
-        }
-    }
+	"layout":{
+		"page_id":"CopyPaste",
+		"page_name":"IBNAc5FGD",
+		"title":"Paste-n-Copy",
+		"descr":"Paste-n-Copy",
+		"page_width":"890",
+		"header":{
+			"logoText":"Paste-n-Copy",
+			"linkList":[
+				{
+					"text":"About",
+					"url":"https://github.com/ma-ha/copypaste/blob/master/README.md",
+					"target":"_blank"
+				}
+			]
+		},
+		"rows":[
+			{
+				"rowId":"Row1",
+				"height":"90px",
+				"cols":[
+					{
+						"columnId":"PasteForm",
+						"width":"760px",
+						"resourceURL":"copypage.php",
+						"title":"Paste:",
+						"moduleConfig":{
+							"description":"Load Copy-n-Paste page",
+							"id":"cloudFormId",
+							"fieldGroups":[
+								{
+									"columns":[
+										{
+											"formFields":[
+												{
+													"id":"page_id",
+													"hidden":"true",
+													"type":"text"
+												},
+												{
+													"id":"copytext",
+													"label":"Text:",
+													"type":"text"
+												}
+												
+											]
+											
+										}
+										
+									]
+									
+								}
+								
+							],
+							"actions":[
+								{
+									"id":"init",
+									"onInit":"GET"
+								},
+								{
+									"id":"sendText",
+									"actionName":"Send Text",
+									"method":"POST",
+									"actionURL":"copypage.php",
+									"update":[
+										{
+											"resId":"CopyTbl"
+										}
+										
+									]
+									
+								}
+								
+							]
+							
+						},
+						"type":"pong-form",
+						"decor":"decor"
+					},
+					{
+						"columnId":"PageNameForm",
+						"width":"230px",
+						"resourceURL":"copypage.php",
+						"title":"Page:",
+						"moduleConfig":{
+							"description":"Load Copy-n-Paste page",
+							"id":"cloudFormId",
+							"fieldGroups":[
+								{
+									"columns":[
+										{
+											"formFields":[
+												{
+													"id":"page_id",
+													"label":"Page-ID:",
+													"type":"text",
+													"readonly":"true"
+												}
+												
+											]
+											
+										}
+										
+									]
+									
+								}
+								
+							],
+							"actions":[
+								{
+									"id":"init",
+									"onInit":"GET"
+								}
+								
+							]
+							
+						},
+						"type":"pong-form",
+						"decor":"decor"
+					}
+				]
+			},
+			{
+				"rowId":"CopyTbl",
+				"height":"500px",
+				"title":"Copy:",
+				"resourceURL":"copypage.php",
+				"moduleConfig":{
+					"dataURL":"copypage.php",
+					"dataDocSubPath":"copydata",
+					"rowId":[
+						"page_id",
+						"data_id"
+					],
+					"cols":[
+						{
+							"id":"BtCopy",
+							"label":"Copy",
+							"icon":"ui-icon-clipboard",
+							"cellType":"button",
+							"method":"JS",
+							"js":"if ( ! document.queryCommandSupported('copy') ) { alert( 'Copy to clipboard not supported by your browser, please do it manually!' ); } else { var copyTextarea = $( '#'+theRowId+' > .CopyTblContentC2').text(); try { var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; alert('Copying text command was ' + msg); } catch (err) { alert('Oops, unable to copy! Please copy the text manually!'); }}",
+							"width":"10%"
+						},
+						{
+							"id":"BtDel",
+							"label":"Delete",
+							"cellType":"button",
+							"method":"DELETE",
+							"update":[
+								{
+									"resId":"CopyTbl"
+								}
+							],
+							"width":"10%"
+						},
+						{
+							"id":"copytext",
+							"label":"Copy Text",
+							"cellType":"text",
+							"width":"60%"
+						},
+						{
+							"id":"create_date",
+							"label":"Date",
+							"cellType":"text",
+							"width":"20%"
+						}
+					],
+					"maxRows":"13"
+				},
+				"type":"pong-table",
+				"decor":"decor"
+			}
+		],
+		"footer":{
+			"copyrightText":"<a href=\"https://github.com/ma-ha/copypaste/blob/master/LICENSE\" target=\"_blank\">MIT License, (C) 2015</a> by <a href=\"https://github.com/ma-ha/\" target=\"_blank\">ma-ha</a>",
+			"modules":[
+				
+			],
+			"linkList":[
+				
+			]
+		}
+	}
 }
